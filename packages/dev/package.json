@@ -1,0 +1,53 @@
+{
+	"name": "@userscript-x/dev",
+	"private": false,
+	"version": "0.0.1",
+	"description": "Development tooling for userscripts",
+	"type": "module",
+	"bin": {
+		"usx": "./dist/cli.js"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/config.d.ts",
+			"import": "./dist/config.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch",
+		"typecheck": "tsc",
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"check": "biome check --write",
+		"prepublishOnly": "pnpm build"
+	},
+	"keywords": [
+		"userscript",
+		"build",
+		"dev",
+		"tooling"
+	],
+	"author": "Alvaro Tinoco",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mrmarble/userscript-x.git",
+		"directory": "packages/dev"
+	},
+	"dependencies": {
+		"chokidar": "^4.0.3",
+		"mri": "^1.2.0",
+		"picocolors": "^1.1.1",
+		"tsdown": "^0.15.11",
+		"ws": "^8.18.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.19.23",
+		"@types/ws": "^8.5.13",
+		"typescript": "^5.9.3"
+	}
+}
