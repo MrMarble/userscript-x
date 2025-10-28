@@ -32,11 +32,8 @@ jobs:
           # disable cache, to avoid cache poisoning (https://docs.zizmor.sh/audits/#cache-poisoning)
           package-manager-cache: false
 
-      - name: Disallow installation scripts
-        run: yq '.onlyBuiltDependencies = []' -i pnpm-workspace.yaml
-
       - name: Install deps
-        run: pnpm install
+        run: pnpm install --ignore-scripts
 
       - name: Get pkgName for tag
         id: tag
