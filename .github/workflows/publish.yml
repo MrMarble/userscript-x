@@ -1,0 +1,61 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "core*"
+      - "dev*"
+      - "create-usx*"
+
+# $GITHUB_REF_NAME - https://docs.github.com/en/actions/reference/workflows-and-actions/variables#default-environment-variables
+
+jobs:
+  release:
+    if: github.repository == 'mrmarble/userscript-x'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    environment: Release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
+
+      - name: Set node version to 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org/
+          # disable cache, to avoid cache poisoning (https://docs.zizmor.sh/audits/#cache-poisoning)
+          package-manager-cache: false
+
+      - name: Disallow installation scripts
+        run: yq '.onlyBuiltDependencies = []' -i pnpm-workspace.yaml
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Get pkgName for tag
+        id: tag
+        run: |
+          # skip if alpha
+          if [[ $GITHUB_REF_NAME =~ alpha ]]; then
+            exit 0
+          fi
+
+          # `%@*` truncates @ and version number from the right side.
+          # https://stackoverflow.com/questions/9532654/expression-after-last-specific-character
+          pkgName=${GITHUB_REF_NAME%@*}
+
+          echo "pkgName=$pkgName" >> $GITHUB_OUTPUT
+
+      - name: Publish package
+        # only run if tag is not alpha
+        if: steps.tag.outputs.pkgName
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd packages/${{ steps.tag.outputs.pkgName }} && pnpm publish
