@@ -1,6 +1,6 @@
 {
 	"name": "create-usx",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Scaffolding tool for userscript projects",
 	"type": "module",
 	"bin": {
