@@ -24,7 +24,7 @@
 		"format": "biome format --write",
 		"check": "biome check --write",
 		"prepublishOnly": "pnpm build",
-		"release": "commit-and-tag-version -t dev --path . -s"
+		"release": "commit-and-tag-version -t dev@ --path . -s -i ./CHANGELOG.md"
 	},
 	"keywords": [
 		"userscript",

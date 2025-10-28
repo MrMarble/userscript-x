@@ -20,7 +20,8 @@
 		"lint": "biome lint",
 		"format": "biome format --write",
 		"check": "biome check --write",
-		"prepublishOnly": "pnpm build"
+		"prepublishOnly": "pnpm build",
+		"release": "commit-and-tag-version -t core@ --path . -s -i ./CHANGELOG.md"
 	},
 	"keywords": [
 		"userscript",
