@@ -1,6 +1,6 @@
 {
 	"name": "userscript-x",
-	"private": false,
+	"private": true,
 	"version": "0.0.0",
 	"description": "Modern development toolkit for userscripts",
 	"type": "module",
