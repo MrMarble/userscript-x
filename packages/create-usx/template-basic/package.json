@@ -1,0 +1,23 @@
+{
+	"name": "userscript-name",
+	"version": "0.0.1",
+	"description": "A userscript",
+	"type": "module",
+	"scripts": {
+		"dev": "usx dev",
+		"build": "usx build",
+		"typecheck": "tsc --noEmit"
+	},
+	"keywords": [
+		"userscript"
+	],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"@userscript-x/core": "^0.0.1"
+	},
+	"devDependencies": {
+		"@userscript-x/dev": "^0.0.1",
+		"typescript": "^5.9.3"
+	}
+}

@@ -1,0 +1,43 @@
+{
+	"name": "create-usx",
+	"version": "0.0.1",
+	"description": "Scaffolding tool for userscript projects",
+	"type": "module",
+	"bin": {
+		"create-usx": "index.js"
+	},
+	"files": [
+		"dist",
+		"index.js",
+		"template-*"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch",
+		"typecheck": "tsc",
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"check": "biome check --write",
+		"prepublishOnly": "pnpm build"
+	},
+	"keywords": [
+		"userscript",
+		"create",
+		"scaffold",
+		"cli"
+	],
+	"author": "Alvaro Tinoco",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mrmarble/userscript-x.git",
+		"directory": "packages/create-usx"
+	},
+	"devDependencies": {
+		"@clack/prompts": "^0.11.0",
+		"cross-spawn": "^7.0.6",
+		"mri": "^1.2.0",
+		"picocolors": "^1.1.1",
+		"tsdown": "^0.15.11"
+	}
+}
