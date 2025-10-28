@@ -1,0 +1,44 @@
+{
+	"name": "@userscript-x/core",
+	"private": false,
+	"version": "0.0.1",
+	"description": "Runtime utilities for userscripts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch",
+		"typecheck": "tsc",
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"check": "biome check --write",
+		"prepublishOnly": "pnpm build"
+	},
+	"keywords": [
+		"userscript",
+		"utilities",
+		"helpers",
+		"runtime"
+	],
+	"author": "Alvaro Tinoco",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mrmarble/userscript-x.git",
+		"directory": "packages/core"
+	},
+	"devDependencies": {
+		"@types/greasemonkey": "^4.0.7",
+		"@types/node": "^20.19.23",
+		"tsdown": "^0.15.11",
+		"typescript": "^5.9.3"
+	}
+}
