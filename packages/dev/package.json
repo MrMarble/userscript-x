@@ -23,7 +23,8 @@
 		"lint": "biome lint",
 		"format": "biome format --write",
 		"check": "biome check --write",
-		"prepublishOnly": "pnpm build"
+		"prepublishOnly": "pnpm build",
+		"release": "commit-and-tag-version -t dev --path . -s"
 	},
 	"keywords": [
 		"userscript",
